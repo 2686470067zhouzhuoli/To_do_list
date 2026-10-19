@@ -1,0 +1,10 @@
+# Virtual environment
+env/
+
+# Python caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Runtime data file (created when the program runs)
+tasks.json
