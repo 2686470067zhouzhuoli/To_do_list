@@ -59,7 +59,25 @@ def view_tasks(tasks):
 
 def complete_task(tasks):
     """Ask for a task number and mark that task as done."""
-    pass
+    if not tasks:
+        print("No tasks to mark as done.")
+        return False
+
+    raw = input("Enter the number of the task to mark as done: ").strip()
+    try:
+        number = int(raw)
+    except ValueError:
+        print("Please enter a valid task number.")
+        return False
+
+    index = number - 1
+    if index < 0 or index >= len(tasks):
+        print(f"No task number {number}. Choose between 1 and {len(tasks)}.")
+        return False
+
+    tasks[index]["done"] = True
+    print(f"Task {number} marked as done: {tasks[index]['description']}")
+    return True
 
 
 def delete_task(tasks):
