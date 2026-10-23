@@ -82,12 +82,40 @@ def complete_task(tasks):
 
 def delete_task(tasks):
     """Ask for a task number and remove that task from the list."""
-    pass
+    if not tasks:
+        print("No tasks to delete.")
+        return False
+    initial=input("Choose a significant task number:").strip()
+    try:
+        number=int(initial)
+    except ValueError:
+        print("Please enter a task number.")
+        return False
+    index=number-1
+    if index<0 or index>=len(tasks):
+        print("No such task number {number}.Please choose from 1 to {len(tasks)}.")
+        return False
+    selected_task=tasks.pop(index)
+    print(f"Task {number} deleted: {selected_task['description']}")
+    return True
 
 
 def show_progress(tasks):
     """Report how many tasks are finished."""
-    pass
+    all_task=len(tasks)
+    if all_task==0:
+        print("No any task yet.")
+        return 0,0
+    finished=0
+    waiting=0
+    for task in tasks:
+        if task["done"]:
+            finished+=1
+        else:
+            waiting+=1
+    print(f"Completed tasks:{finished}")
+    print(f"Unfinished tasks:{waiting}")
+    return finished,waiting
 
 
 def main():
