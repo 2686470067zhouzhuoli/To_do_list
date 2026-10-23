@@ -49,7 +49,16 @@ def save_tasks(tasks):
 
 def add_task(tasks):
     """Ask for a description and append a new, unfinished task to the list."""
-    pass
+
+    new_description = input("Please enter a new task:").strip()
+
+    if new_description == "":
+        print("The task cannot be empty.The addition failed.")
+        return
+    
+    new_task = {"description": new_description, "done": False}
+    tasks.append(new_task)              #这个list叫什么
+    print("The task was added successfully.")
 
 
 def view_tasks(tasks):
